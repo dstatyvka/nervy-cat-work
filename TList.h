@@ -1,8 +1,9 @@
 // -*- mode: c++; coding: cp1251 -*-
 #pragma once
 
+#include <fstream>
+
 #include "TNode.h"
-#include "fstream.h"
 
 //*********************************************************//
 
@@ -13,10 +14,10 @@ public:
 	~TListDef();
 
  void AddLast(int index_value, 
-			  char word_value[512],
-			  char synonym_value[512]);
+	      const char word_value[512],
+	      const char synonym_value[512]);
 
- void Show(char curdir[512]);
+ void Show(const char curdir[512]);
 
  void SetNext(TListDef * node);
  TListDef* GetNext(){return next;};
@@ -40,9 +41,9 @@ public:
 	TListTerm();
 	~TListTerm();
 
- void AddLast(char word_value[512]);
+ void AddLast(const char word_value[512]);
 
- void Show(char curdir[512]);
+ void Show(const char curdir[512]);
 
  void SetNext(TListTerm * node);
  TListTerm* GetNext(){return next;};
@@ -104,9 +105,9 @@ public:
 
 	TListDef *GetHead();
 
-	void AddLast_List(int index, char term[512], char synonym[512]);
-	void AddLast_Word(char term[512]);
-	void Show(char curdir[512]);
+	void AddLast_List(int index, const char term[512], const char synonym[512]);
+	void AddLast_Word(const char term[512]);
+	void Show(const char curdir[512]);
 	
 private:
 	TListDef * head_Definition;

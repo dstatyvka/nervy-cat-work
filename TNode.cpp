@@ -15,8 +15,8 @@ TNodeDef::TNodeDef(void)
 
 //------------------------------------
 
-TNodeDef::TNodeDef(char word_value[512],
-				   char synonym_value[512])
+TNodeDef::TNodeDef(const char word_value[512],
+		   const char synonym_value[512])
 {
   strcpy(term,word_value);
   strcpy(synonym,synonym_value);
@@ -29,28 +29,28 @@ TNodeDef::~TNodeDef(void)
 }
 //------------------------------------
 
-char *TNodeDef::GetTerm()
+const char *TNodeDef::GetTerm()
 {
 	return term;
 }
 
 //------------------------------------
 
-char *TNodeDef::GetSynonym()
+const char *TNodeDef::GetSynonym()
 {
 	return synonym;
 }
 
 //------------------------------------
 
-void TNodeDef::SetTerm(char d[512])
+void TNodeDef::SetTerm(const char d[512])
 {
 	strcpy(term,d);
 }
 
 //------------------------------------
 
-void TNodeDef::SetSynonym(char d[512])
+void TNodeDef::SetSynonym(const char d[512])
 {
 	strcpy(synonym,d);
 }
@@ -79,7 +79,7 @@ TNodeTerm::TNodeTerm(void)
 
 //------------------------------------
 
-TNodeTerm::TNodeTerm(char word_value[512])
+TNodeTerm::TNodeTerm(const char word_value[512])
 {
   strcpy(term,word_value);
   next = NULL;
@@ -91,12 +91,12 @@ TNodeTerm::~TNodeTerm(void)
 }
 //------------------------------------
 
-char *TNodeTerm::GetTerm()
+const char *TNodeTerm::GetTerm()
 {
 	return term;
 }
 
-void TNodeTerm::SetTerm(char d[512])
+void TNodeTerm::SetTerm(const char d[512])
 {
 	strcpy(term,d);
 }

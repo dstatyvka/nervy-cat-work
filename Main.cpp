@@ -1,22 +1,26 @@
 // -*- mode: c++; coding: cp1251 -*-
+#include <string>
+#include <cstring>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+// #include <ctype>
+// #include "process.h"
+// #include "io.h"
+
 #include "TNode.h"
 #include "TList.h"
-#include "string.h"
-#include "stdlib.h"
-#include "ctype.h"
-#include "process.h"
-#include "io.h"
 
 //Создаю свои списки 
-	TList_TermList TERMS; 
-	TList_Definition Definitions;
-	TList_Relation Relations;
-	TList_Relation_weight Relation_weight;
-	TList_Definition Paragraph;
+TList_TermList TERMS; 
+TList_Definition Definitions;
+TList_Relation Relations;
+TList_Relation_weight Relation_weight;
+TList_Definition Paragraph;
 
-	ifstream *is = NULL;
+std::ifstream *is = NULL;
 
-void main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
 	//*****************************************************
 	//*****************************************************
@@ -24,17 +28,17 @@ void main(int argc, char* argv[])
 	//*****************************************************
 	//*****************************************************
 	char Way1[512],	Way2[512], Way3[512], Way4[512];
-	cout<<argv[1]<<endl;
-	cout<<argv[2]<<endl;
-	cout<<argv[3]<<endl;
+	std::cout<<argv[1]<<std::endl;
+	std::cout<<argv[2]<<std::endl;
+	std::cout<<argv[3]<<std::endl;
 	
-	is = new ifstream();
+	is = new std::ifstream();
 	//Открываем выбранный файл
-	is->open(argv[1], ios::nocreate);	
+	is->open(argv[1], std::ios_base::in);
 	
 		if (is->is_open()!=0)
 		{	
-			cout<<"====================="<<endl;
+		  std::cout<<"====================="<<std::endl;
 		
 			//=========Разбор файла по словам=========
 			char buf_word[512], buf_term[512];
@@ -117,16 +121,16 @@ void main(int argc, char* argv[])
 		while (!is->eof());
 		}
 		is->close();
-		cout<<"READ FROM KURS COMPLITE"<<endl;
+		std::cout<<"READ FROM KURS COMPLITE"<<std::endl;
 	//*****************************************************
 	//*****************************************************
 	//****** Считываем обработанный словарь терминов ******
 	//*****************************************************
 	//*****************************************************
 	
-		cout<<"====================="<<endl;
+		std::cout<<"====================="<<std::endl;
 		//Открываем выбранный файл
-		is->open(argv[2], ios::nocreate);
+		is->open(argv[2], std::ios_base::in);
 
 		if (is->is_open())
 		{
@@ -258,8 +262,8 @@ void main(int argc, char* argv[])
 		while (!is->eof());
 		
 		is->close();
-		cout<<"READ FROM DEFINITION FILE COMPLITE"<<endl;
-		cout<<"====================="<<endl;
+		std::cout<<"READ FROM DEFINITION FILE COMPLITE"<<std::endl;
+		std::cout<<"====================="<<std::endl;
 		
 		//*************************************************//
 		//***** Установку связей между терминами **********//
@@ -267,7 +271,7 @@ void main(int argc, char* argv[])
 		
 		Relations.Identification_of_relation(TERMS, Definitions);
 
-		cout<<"Identification_of_relation COMPLITE"<<endl;
+		std::cout<<"Identification_of_relation COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -276,7 +280,7 @@ void main(int argc, char* argv[])
 		
 		TERMS.CalculationEntropy();
 
-		cout<<"CalculationEntropy COMPLITE"<<endl;
+		std::cout<<"CalculationEntropy COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -285,7 +289,7 @@ void main(int argc, char* argv[])
 		
 		Relations.Factor_of_Nexus(TERMS);
 
-		cout<<"Factor_of_Nexus COMPLITE"<<endl;
+		std::cout<<"Factor_of_Nexus COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -294,7 +298,7 @@ void main(int argc, char* argv[])
 			
 		Relations.GroupDependancy(TERMS);
 
-		cout<<"GroupDependancy COMPLITE"<<endl;
+		std::cout<<"GroupDependancy COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -303,7 +307,7 @@ void main(int argc, char* argv[])
 			
 		Relations.ValenceRelevance(TERMS);
 
-		cout<<"ValenceRelevance COMPLITE"<<endl;
+		std::cout<<"ValenceRelevance COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -312,7 +316,7 @@ void main(int argc, char* argv[])
 
 		TERMS.ConnectivityOfTerm();
 
-		cout<<"ConnectivityOfTerm COMPLITE"<<endl;
+		std::cout<<"ConnectivityOfTerm COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -321,7 +325,7 @@ void main(int argc, char* argv[])
 
 		Relations.LeafNodeParamOfTerm(TERMS);
 
-		cout<<"LeafNodeParamOfTerm COMPLITE"<<endl;
+		std::cout<<"LeafNodeParamOfTerm COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -330,7 +334,7 @@ void main(int argc, char* argv[])
 
 		Relations.CalculationFunctionalWeigth(TERMS);
 
-		cout<<"CalculationFunctionalWeigthOfTerm COMPLITE"<<endl;
+		std::cout<<"CalculationFunctionalWeigthOfTerm COMPLITE"<<std::endl;
 
 		//*************************************************//
 		//*************************************************//
@@ -339,7 +343,7 @@ void main(int argc, char* argv[])
 
 		Relation_weight.PowerOfSamantikRelation(TERMS, Relations);
 
-		cout<<"Relation_weight COMPLITE"<<endl;
+		std::cout<<"Relation_weight COMPLITE"<<std::endl;
 
 		//***************************************************************//
 		//***************************************************************//
@@ -348,7 +352,7 @@ void main(int argc, char* argv[])
 
 		Relation_weight.CountTermWithFreq(TERMS, Relations);
 
-		cout<<"CountTermWithFreq COMPLITE"<<endl;
+		std::cout<<"CountTermWithFreq COMPLITE"<<std::endl;
 
 		//***************************************************************//
 		//***************************************************************//
@@ -357,7 +361,7 @@ void main(int argc, char* argv[])
 
 		Relation_weight.ValenceRelevanceOfRelations(TERMS);
 
-		cout<<"ValenceRelevanceOfRelations COMPLITE"<<endl;
+		std::cout<<"ValenceRelevanceOfRelations COMPLITE"<<std::endl;
 
 		//***************************************************************//
 		//***************************************************************//
@@ -370,9 +374,9 @@ void main(int argc, char* argv[])
 			//*****************************************************
 			//*****************************************************
 			
-			cout<<"====================="<<endl;//Открываем выбранный файл
+			std::cout<<"====================="<<std::endl;//Открываем выбранный файл
 			
-			is->open(argv[3], ios::nocreate);
+			is->open(argv[3], std::ios_base::in);
 	
 			if (is->is_open())
 			{
@@ -444,12 +448,12 @@ void main(int argc, char* argv[])
 			is->close();
 			delete is;
 
-			cout<<"READ FROM KURS_2 COMPLITE"<<endl;
-			cout<<"====================="<<endl;
+			std::cout<<"READ FROM KURS_2 COMPLITE"<<std::endl;
+			std::cout<<"====================="<<std::endl;
 		
 		Relation_weight.Co_OccurrenceOfTerms(TERMS, Paragraph);
 
-		cout<<"Co_OccurrenceOfTerms COMPLITE"<<endl;
+		std::cout<<"Co_OccurrenceOfTerms COMPLITE"<<std::endl;
 
 		
 
@@ -509,7 +513,7 @@ void main(int argc, char* argv[])
 			
 			Paragraph.Show(Way4);
 
-			cout<<"SHOW OF FILE COMPLITE"<<endl;
+			std::cout<<"SHOW OF FILE COMPLITE"<<std::endl;
 			
 			/////////////////////////////////////////////////////////////////////////////////////////
 		}
@@ -522,35 +526,36 @@ void main(int argc, char* argv[])
 
 	//Открываем результаты
 		
-	//термины и параметры
-	//если существует файл
-		if(_access(Way1, 0)!=-1)
-		//Показать результаты
-			_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way1, NULL );
+	// //термины и параметры
+	// //если существует файл
+	// 	if(_access(Way1, 0)!=-1)
+	// 	//Показать результаты
+	// 		_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way1, NULL );
 			
-	cout<<"SHOW KURS COMPLITE"<<endl;
+	// std::cout<<"SHOW KURS COMPLITE"<<std::endl;
 		
-	//Отношения между параметрами
-	//если существует файл
-		if(_access(Way2, 0)!=-1)
-		//Показать результаты
-			_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way2, NULL );
+	// //Отношения между параметрами
+	// //если существует файл
+	// 	if(_access(Way2, 0)!=-1)
+	// 	//Показать результаты
+	// 		_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way2, NULL );
 
-	cout<<"SHOW DEFINITION COMPLITE"<<endl;
+	// std::cout<<"SHOW DEFINITION COMPLITE"<<std::endl;
 
-	//параметры отношений
-	//если существует файл
-		if(_access(Way3, 0)!=-1)
-		//Показать результаты
-			_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way3, NULL );
+	// //параметры отношений
+	// //если существует файл
+	// 	if(_access(Way3, 0)!=-1)
+	// 	//Показать результаты
+	// 		_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way3, NULL );
 
-	cout<<"SHOW RELATION_WEIGHT COMPLITE"<<endl;
+	// std::cout<<"SHOW RELATION_WEIGHT COMPLITE"<<std::endl;
 
-	//параметры отношений
-	//если существует файл
-		if(_access(Way4, 0)!=-1)
-		//Показать результаты
-			_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way4, NULL );
+	// //параметры отношений
+	// //если существует файл
+	// 	if(_access(Way4, 0)!=-1)
+	// 	//Показать результаты
+	// 		_spawnlp(_P_NOWAIT, /*_P_OVERLAY,*/ "notepad.exe", "notepad.exe", Way4, NULL );
 
-	cout<<"SHOW KURS COMPLITE"<<endl;
+	// std::cout<<"SHOW KURS COMPLITE"<<std::endl;
+	return 0;
 }
