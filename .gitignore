@@ -1,1 +1,6 @@
 .deps
+*.o
+Makefile.in
+Makefile
+*~
+config.h
